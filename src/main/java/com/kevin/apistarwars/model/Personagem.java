@@ -1,9 +1,12 @@
 package com.kevin.apistarwars.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -16,15 +19,18 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(exclude = "id")
-public class Personagem {
+@EqualsAndHashCode(exclude = "id_personagem")
+@Table(name = "tb_personagem")
+public class Personagem implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Long id_personagem;
 	
-	private String photo;
-	private String name;
+	private String foto;
+	private String nome;
 	private String caracteristicas;
-	private String description;
+	private String historia;
 }
