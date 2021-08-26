@@ -15,30 +15,30 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.kevin.apistarwars.model.Personagem;
-import com.kevin.apistarwars.services.PersonagemService;
+import com.kevin.apistarwars.model.Caracteristicas;
+import com.kevin.apistarwars.services.CaracteristicaService;
 
 @RestController
-@RequestMapping(value = "/personagens")
-public class PersonagemResource {
+@RequestMapping(value = "/caracteristicas")
+public class CaracteristicaResource {
 
 	@Autowired
-	private PersonagemService service;
+	private CaracteristicaService service;
 
 	@GetMapping
-	public ResponseEntity<List<Personagem>> findAll() {
-		List<Personagem> list = service.findAll();
+	public ResponseEntity<List<Caracteristicas>> findAll() {
+		List<Caracteristicas> list = service.findAll();
 		return ResponseEntity.ok().body(list);
 	}
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Personagem> findById(@PathVariable Long id){
-		Personagem obj = service.findById(id);
+	public ResponseEntity<Caracteristicas> findById(@PathVariable Long id){
+		Caracteristicas obj = service.findById(id);
 		return ResponseEntity.ok().body(obj);
 	}
 	
 	@PostMapping
-	public ResponseEntity <Personagem> insert( @RequestBody Personagem obj){
+	public ResponseEntity <Caracteristicas> insert( @RequestBody Caracteristicas obj){
 		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri(); 
 		return ResponseEntity.created(uri).body(obj);
@@ -51,7 +51,7 @@ public class PersonagemResource {
 	}
 	
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<Personagem> update(@PathVariable Long id, @RequestBody Personagem obj){
+	public ResponseEntity<Caracteristicas> update(@PathVariable Long id, @RequestBody Caracteristicas obj){
 		obj = service.update(id, obj);
 		return ResponseEntity.ok().body(obj);
 	}
